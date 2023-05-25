@@ -20,7 +20,11 @@ public class ImageElement {
     }
 
     public ImageIcon getImageElement() throws FileNotFoundException {
-        URL imageURL = this.getClass().getResource(File.separator + "images" + File.separator + this.name);
+        String imagePAth = File.separator + "images" + File.separator + this.name;
+        URL imageURL = ImageElement.class.getResource(imagePAth); // This works on Linux
+        if(imageURL == null){ // This works on Windows
+            imageURL = ImageElement.class.getClassLoader().getResource(imagePAth);
+        }
         ImageIcon imageIcon = new ImageIcon(imageURL);
         if (imageIcon.getImageLoadStatus() != MediaTracker.COMPLETE) {
             throw new FileNotFoundException(String.format("Failed to load image file %s", imageURL.getFile()));

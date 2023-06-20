@@ -22,7 +22,7 @@ public class ImageElement {
     public ImageIcon getImageElement() throws FileNotFoundException {
         String imagePAth = File.separator + "images" + File.separator + this.name;
         URL imageURL = ImageElement.class.getResource(imagePAth); // This works on Linux
-        if(imageURL == null){ // This works on Windows
+        if (imageURL == null) { // This works on Windows
             imageURL = ImageElement.class.getClassLoader().getResource(imagePAth);
         }
         ImageIcon imageIcon = new ImageIcon(imageURL);
